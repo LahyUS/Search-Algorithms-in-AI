@@ -17,16 +17,16 @@ def BFS(graph, edges, edge_id, start, goal):
     # TODO: your code
 
     # Initialize 
-    visited = [0 for i in repeat(None,len(graph))]
+    visited = [0 for i in repeat(None, len(graph))]
     #visited = []
     #for x in range(len(graph)):
         #visited.append(0)
 
     # add the start node to the queue -> 0 is start node
-    q = Queue(maxsize = 11)
-    q.put(start) 
+    q = Queue(maxsize=11)
+    q.put(start)
 
-    pathed = [] # save path we traced
+    pathed = []  # save path we traced
     # set the visited value of node 0 to visited
     visited[start] = 1
 
@@ -39,7 +39,7 @@ def BFS(graph, edges, edge_id, start, goal):
 
     breaker = False
     while q.empty() == False:
-        visit = q.get();
+        visit = q.get()
         pathed.append(visit)
 
         # set color of present vertex 
@@ -52,12 +52,12 @@ def BFS(graph, edges, edge_id, start, goal):
         # find adjacent vertex of the present vertex
         for y in adjacency[visit]:
             # check if route exists and that node is not visited
-            if  visited[y] == 0:
-                visited[y] = 1; # mark as visited
+            if visited[y] == 0:
+                visited[y] = 1  # mark as visited
 
                 # set color 
-                graph[y][3] = red;
-                graphUI.updateUI();
+                graph[y][3] = red
+                graphUI.updateUI()
                 pygame.time.delay(500)
                 edges[edge_id(visit, y)][1] = white
                 graphUI.updateUI()
@@ -72,7 +72,7 @@ def BFS(graph, edges, edge_id, start, goal):
                     break
 
                 # put adjacent vertex to queue
-                q.put(y);
+                q.put(y)
 
         if breaker == True:
             break
@@ -134,7 +134,7 @@ def DFS(graph, edges, edge_id, start, goal):
 
             graph[start][3] = blue
             graphUI.updateUI()
-            return DFS(graph,edges,edge_id,y,goal)
+            return DFS(graph, edges, edge_id, y, goal)
         #continue
 
     # if present vertex is a hang vertex or is a leaf, then we trace back to previous root node
